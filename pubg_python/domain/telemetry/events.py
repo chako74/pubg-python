@@ -303,7 +303,13 @@ class LogMatchStart(LogMatchEvent):
 
 
 class LogMatchEnd(LogMatchEvent):
-    pass
+
+    def from_dict(self):
+        super().from_dict()
+        self.game_result_on_finished = [
+            objects.GameResult(data)
+            for data in self._data.get('gameResultOnFinished')['results']
+        ]
 
 
 class LogGameStatePeriodic(Event):
