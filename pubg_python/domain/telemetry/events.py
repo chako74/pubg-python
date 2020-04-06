@@ -294,7 +294,7 @@ class LogMatchStart(Event):
         # /en/telemetry-objects.html#bluezonecustomoptions
         self.characters = [
             objects.CharacterWrapper(data)
-            for data in self.data.get('characters', [])
+            for data in self._data.get('characters', [])
         ]
         self.blue_zone_custom_options = objects.BlueZoneCustomOptions(
             self._data.get('blueZoneCustomOptions'))
@@ -312,7 +312,7 @@ class LogMatchEnd(Event):
         super().from_dict()
         self.characters = [
             objects.CharacterWrapper(data)
-            for data in self.data.get('characters', [])
+            for data in self._data.get('characters', [])
         ]
         self.game_result_on_finished = [
             objects.GameResult(data)
