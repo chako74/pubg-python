@@ -286,12 +286,16 @@ class LogMatchEvent(Event):
         ]
 
 
-class LogMatchStart(LogMatchEvent):
+class LogMatchStart(Event):
 
     def from_dict(self):
         super().from_dict()
         # blueZoneCustomOptions data is a stringified array of objects
         # /en/telemetry-objects.html#bluezonecustomoptions
+        self.characters = [
+            objects.CharacterWrapper(data)
+            for data in self.data.get('characters', [])
+        ]
         self.blue_zone_custom_options = objects.BlueZoneCustomOptions(
             self._data.get('blueZoneCustomOptions'))
         self.camera_view_behaviour = self._data.get('cameraViewBehaviour')
@@ -302,10 +306,14 @@ class LogMatchStart(LogMatchEvent):
         self.weather_id = self._data.get('weatherId')
 
 
-class LogMatchEnd(LogMatchEvent):
+class LogMatchEnd(Event):
 
     def from_dict(self):
         super().from_dict()
+        self.characters = [
+            objects.CharacterWrapper(data)
+            for data in self.data.get('characters', [])
+        ]
         self.game_result_on_finished = [
             objects.GameResult(data)
             for data in self._data.get('gameResultOnFinished')['results']
