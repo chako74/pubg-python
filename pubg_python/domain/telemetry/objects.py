@@ -97,11 +97,15 @@ class CharacterWrapper(Object):
 
     def from_dict(self):
         super().from_dict()
-        self.character = Character(self._data.get('character'))
-        self.primary_weapon_first = self._data.get('primaryWeaponFirst')
-        self.primary_weapon_second = self._data.get('primaryWeaponSecond')
-        self.secondary_weapon = self._data.get('secondaryWeapon')
-        self.spawn_kit_index = self._data.get('spawnKitIndex')
+        character_data = self._data.get('character')
+        if character_data:
+            self.character = Character(self._data.get('character'))
+            self.primary_weapon_first = self._data.get('primaryWeaponFirst')
+            self.primary_weapon_second = self._data.get('primaryWeaponSecond')
+            self.secondary_weapon = self._data.get('secondaryWeapon')
+            self.spawn_kit_index = self._data.get('spawnKitIndex')
+        else:
+            self.character = Character(self._data)
 
 
 class Vehicle(Object):
