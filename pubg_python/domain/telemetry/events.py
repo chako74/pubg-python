@@ -163,6 +163,14 @@ class LogItemPickupFromCarepackage(LogItemPickup):
         self.item = objects.Item(self._data.get('item', {}))
 
 
+class LogItemPickupFromCustomPackage(LogItemPickup):
+
+    def from_dict(self):
+        super().from_dict()
+        self.character = objects.Character(self._data.get('character', {}))
+        self.item = objects.Item(self._data.get('item', {}))
+
+
 class LogItemPickupFromLootBox(LogItemPickup):
 
     def from_dict(self):
@@ -205,6 +213,19 @@ class LogVaultStart(Event):
     def from_dict(self):
         super().from_dict()
         self.character = objects.Character(self._data.get('character', {}))
+
+
+class LogVehicleDamage(Event):
+
+    def from_dict(self):
+        super().from_dict()
+        self.attackId = self._data.get('attackId')
+        self.character = objects.Character(self._data.get('attacker', {}))
+        self.vehicle = objects.Vehicle(self._data.get('vehicle', {}))
+        self.damageTypeCategory = self._data.get('damageTypeCategory')
+        self.damageCauserName = self._data.get('damageCauserName')
+        self.damage = self._data.get('damage')
+        self.distance = self._data.get('distance')
 
 
 class LogVehicle(Event):
