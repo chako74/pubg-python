@@ -48,7 +48,8 @@ class APIClient(Client):
 class TelemetryClient(Client):
 
     TELEMETRY_HOSTS = [
-        'telemetry-cdn.playbattlegrounds.com'
+        'telemetry-cdn.playbattlegrounds.com',
+        'telemetry-cdn.pubg.com'
     ]
 
     def request(self, endpoint):
