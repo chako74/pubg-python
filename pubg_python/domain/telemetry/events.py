@@ -102,6 +102,28 @@ class LogPlayerKill(Event):
             self._data.get('victimGameResult', {}))
 
 
+class LogPlayerKill2(Event):
+
+    def from_dict(self):
+        super().from_dict()
+        self.attack_id = self._data.get('attackId')
+        self.killer = objects.Character(self._data.get('killer', {}))
+        self.victim = objects.Character(self._data.get('victim', {}))
+        self.victim_weapon = self._data.get('victimWeapon')
+        self.victim_weapon_additional_info = self._data.get(
+            'victimWeaponAdditionalInfo')
+        self.assistant = objects.Character(self._data.get('assistant', {}))
+        self.dbno_id = self._data.get('dBNOId')
+        self.damage_type_category = self._data.get('damageTypeCategory')
+        self.damage_causer_name = self._data.get('damageCauserName')
+        self.damage_causer_additional_info = self._data.get(
+            'damageCauserAdditionalInfo', [])
+        self.damage_reason = self._data.get('damageReason')
+        self.distance = self._data.get('distance')
+        self.victim_game_result = objects.GameResult(
+            self._data.get('victimGameResult', {}))
+
+
 class LogParachuteLanding(Event):
 
     def from_dict(self):
