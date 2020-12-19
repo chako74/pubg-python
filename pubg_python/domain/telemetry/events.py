@@ -102,7 +102,7 @@ class LogPlayerKill(Event):
             self._data.get('victimGameResult', {}))
 
 
-class LogPlayerKill2(Event):
+class LogPlayerKillV2(Event):
 
     def from_dict(self):
         super().from_dict()
