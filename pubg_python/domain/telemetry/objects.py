@@ -108,6 +108,18 @@ class CharacterWrapper(Object):
             self.character = Character(self._data)
 
 
+class DamageInfo(Object):
+
+    def from_dict(self):
+        super().from_dict()
+        self.damage_reason = self._data.get('damageReason')
+        self.damage_type_category = self._data.get('damageTypeCategory')
+        self.damage_causer_name = self._data.get('damageCauserName')
+        self.additional_info = self._data.get('additionalInfo')
+        self.distance = self._data.get('distance')
+        self.is_through_penetrable_wall = self._data.get('isThroughPenetrableWall')
+
+
 class Vehicle(Object):
 
     def from_dict(self):

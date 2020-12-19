@@ -107,21 +107,20 @@ class LogPlayerKillV2(Event):
     def from_dict(self):
         super().from_dict()
         self.attack_id = self._data.get('attackId')
-        self.killer = objects.Character(self._data.get('killer', {}))
-        self.victim = objects.Character(self._data.get('victim', {}))
-        self.victim_weapon = self._data.get('victimWeapon')
-        self.victim_weapon_additional_info = self._data.get(
-            'victimWeaponAdditionalInfo')
-        self.assistant = objects.Character(self._data.get('assistant', {}))
         self.dbno_id = self._data.get('dBNOId')
-        self.damage_type_category = self._data.get('damageTypeCategory')
-        self.damage_causer_name = self._data.get('damageCauserName')
-        self.damage_causer_additional_info = self._data.get(
-            'damageCauserAdditionalInfo', [])
-        self.damage_reason = self._data.get('damageReason')
-        self.distance = self._data.get('distance')
         self.victim_game_result = objects.GameResult(
             self._data.get('victimGameResult', {}))
+        self.victim = objects.Character(self._data.get('victim', {}))
+        self.victim_weapon = self._data.get('victimWeapon')
+        self.victim_weapon_additional_info = self._data.get('victimWeaponAdditionalInfo')
+        self.dbno_maker = objects.Character(self._data.get('dBNOMaker', {}))
+        self.dbno_damage_info = self._data.get('dBNODamageInfo')
+        self.finisher = objects.Character(self._data.get('finisher', {}))
+        self.finish_damage_info = self._data.get('finishDamageInfo')
+        self.killer = objects.Character(self._data.get('killer', {}))
+        self.killer_damage_info = self._data.get('killerDamageInfo')
+        self.is_suicide = self._data.get('isSuicide')
+
 
 
 class LogParachuteLanding(Event):
